@@ -62,9 +62,9 @@
                 <div class="projects-grid">
                     
                     <!-- Smaakmanipulatie Project -->
-                    <article class="project-card glassmorphism">
+                    <article class="project-card glassmorphism clickable-project" data-images='["images/ai_stylist_1.jpg", "images/ai_stylist_2.jpg"]'>
                         <div class="project-image">
-                            <img src="images/smaakmanipulatie.png" alt="Smaakmanipulatie AI Fashion App UI">
+                            <img src="images/ai_stylist_1.jpg" alt="Smaakmanipulatie AI Fashion App UI">
                             <div class="image-overlay"></div>
                         </div>
                         <div class="project-info">
@@ -130,6 +130,14 @@
         <p>Designed & Built by <a href="https://www.linkedin.com/in/devan-smit-190480385/" target="_blank">Devan Smit</a></p>
         <p class="copyright">&copy; 2026. All rights reserved.</p>
     </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <span class="modal-close">&times;</span>
+        <a class="modal-prev" class="modal-nav">&#10094;</a>
+        <img class="image-modal-content" id="modalImage">
+        <a class="modal-next" class="modal-nav">&#10095;</a>
+    </div>
 
     <!-- Scripts -->
     <script src="js/main.js"></script>
