@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentImages = JSON.parse(imagesData);
                 currentIndex = 0;
                 
-                modal.style.display = "block";
+                modal.style.display = "flex";
                 modalImg.src = currentImages[currentIndex];
                 
                 // Hide arrows if only one image

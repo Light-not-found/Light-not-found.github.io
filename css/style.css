@@ -512,7 +512,6 @@ footer .copyright {
     display: none;
     position: fixed;
     z-index: 2000;
-    padding-top: 80px;
     left: 0;
     top: 0;
     width: 100%;
@@ -520,16 +519,13 @@ footer .copyright {
     background-color: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-wrapper {
     position: relative;
-    margin: 0 auto;
-    width: fit-content;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-block;
 }
 
 .image-modal-content {
@@ -538,7 +534,8 @@ footer .copyright {
     max-height: 80vh;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-lg);
-    object-fit: contain;
+    width: auto;
+    height: auto;
     animation: zoom 0.3s ease;
 }
 
@@ -591,8 +588,8 @@ footer .copyright {
     transform: translateY(-50%) scale(1.05);
 }
 .modal-prev {
-    left: -40px;
+    left: 20px;
 }
 .modal-next {
-    right: -40px;
+    right: 20px;
 }
