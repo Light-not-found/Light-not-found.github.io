@@ -591,8 +591,8 @@ footer .copyright {
     transform: translateY(-50%) scale(1.05);
 }
 .modal-prev {
-    left: -80px;
+    left: 40px;
 }
 .modal-next {
-    right: -80px;
+    right: 40px;
 }
