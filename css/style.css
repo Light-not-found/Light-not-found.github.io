@@ -565,31 +565,22 @@ footer .copyright {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: #fff;
-    font-weight: bold;
-    font-size: 40px;
+    color: var(--text-primary);
     transition: all 0.2s ease;
-    border-radius: 50%;
-    background: var(--text-primary);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     user-select: none;
     -webkit-user-select: none;
-    border: none;
-    height: 80px;
-    width: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2010;
 }
 .modal-nav:hover {
-    background: var(--accent-primary);
-    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
-    transform: translateY(-50%) scale(1.05);
+    color: var(--accent-primary);
+    transform: translateY(-50%) scale(1.1);
 }
 .modal-prev {
-    left: 20px;
+    left: -60px;
 }
 .modal-next {
-    right: 20px;
+    right: -60px;
 }
