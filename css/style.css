@@ -2,11 +2,11 @@
    CSS CUSTOM PROPERTIES (VARIABLES)
    ========================================= */
 :root {
-    /* Color Palette - Sleek Light Theme */
-    --bg-color: #fafafa;
-    --bg-color-alt: #ffffff;
-    --text-primary: #171717; /* Zinc 900 */
-    --text-secondary: #52525b; /* Zinc 600 */
+    /* Color Palette - Modern Dark Theme */
+    --bg-color: #09090b; /* Zinc 950 */
+    --bg-color-alt: #18181b; /* Zinc 900 */
+    --text-primary: #fafafa; /* Zinc 50 */
+    --text-secondary: #a1a1aa; /* Zinc 400 */
     
     /* Modern Accents */
     --accent-primary: #2563eb; /* Blue 600 */
@@ -108,7 +108,7 @@ a:hover {
     content: "";
     display: block;
     height: 1px;
-    background: #e4e4e7;
+    background: #27272a;
     flex-grow: 1;
     margin-left: 2rem;
 }
@@ -140,18 +140,18 @@ a:hover {
 .btn-outline {
     background: transparent;
     color: var(--text-primary);
-    border: 1px solid #e4e4e7;
+    border: 1px solid #3f3f46;
 }
 .btn-outline:hover {
-    border-color: #d4d4d8;
-    background: #f4f4f5;
+    border-color: #52525b;
+    background: #27272a;
     transform: translateY(-2px);
 }
 
 /* Card utility */
 .card {
     background: var(--bg-color-alt);
-    border: 1px solid #f4f4f5;
+    border: 1px solid #27272a;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md);
 }
@@ -171,16 +171,16 @@ a:hover {
     z-index: 1000;
     transition: all var(--transition-speed);
     padding: 1rem 2rem;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(24, 24, 27, 0.6);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    background: rgba(24, 24, 27, 0.9);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 .nav-container {
@@ -297,8 +297,34 @@ a:hover {
 /* About Section */
 .about {
     background-color: var(--bg-color-alt);
-    border-top: 1px solid #f4f4f5;
-    border-bottom: 1px solid #f4f4f5;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+}
+.about-content {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+.about-image {
+    flex: 1;
+    max-width: 400px;
+}
+.image-wrapper {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #27272a;
+    box-shadow: var(--shadow-lg);
+}
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-speed);
+}
+.image-wrapper:hover img {
+    transform: scale(1.05);
 }
 .about-text {
     max-width: 700px;
@@ -336,8 +362,8 @@ a:hover {
     height: 250px;
     position: relative;
     overflow: hidden;
-    background-color: #f4f4f5;
-    border-bottom: 1px solid #f4f4f5;
+    background-color: #18181b;
+    border-bottom: 1px solid #27272a;
 }
 .project-image img {
     width: 100%;
@@ -365,7 +391,7 @@ a:hover {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background: #fff;
+    background: var(--bg-color-alt);
 }
 
 .project-label {
@@ -401,7 +427,7 @@ a:hover {
 }
 
 .project-tech li {
-    background: #f4f4f5;
+    background: #27272a;
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-weight: 500;
@@ -424,7 +450,7 @@ a:hover {
     background: var(--bg-color-alt);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-sm);
-    border: 1px solid #f4f4f5;
+    border: 1px solid #27272a;
 }
 
 .contact-content p {
@@ -445,7 +471,7 @@ a:hover {
 
 .social-icon {
     color: var(--text-secondary);
-    border: 1px solid #e4e4e7;
+    border: 1px solid #27272a;
     border-radius: 50%;
     padding: 10px;
     display: flex;
@@ -455,16 +481,16 @@ a:hover {
 }
 .social-icon:hover {
     color: var(--text-primary);
-    border-color: var(--text-primary);
+    border-color: var(--accent-primary);
     transform: translateY(-2px);
-    background: #f4f4f5;
+    background: #27272a;
 }
 
 /* Footer */
 footer {
     text-align: center;
     padding: 2rem 0;
-    border-top: 1px solid #e4e4e7;
+    border-top: 1px solid #27272a;
     background-color: var(--bg-color-alt);
 }
 footer p {
@@ -516,7 +542,7 @@ footer .copyright {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(9, 9, 11, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     align-items: center;
