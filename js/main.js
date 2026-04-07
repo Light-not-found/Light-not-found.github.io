@@ -103,4 +103,25 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.style.display = "none";
         }
     });
+
+    // Copy Email Functionality
+    const copyBtn = document.getElementById('copyEmail');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const email = "devan.smit2007@gmail.com";
+            const tooltip = copyBtn.querySelector('.tooltip');
+            
+            navigator.clipboard.writeText(email).then(() => {
+                if (tooltip) {
+                    tooltip.textContent = "Copied!";
+                    setTimeout(() => {
+                        tooltip.textContent = "Copy";
+                    }, 2000);
+                }
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        });
+    }
 });
