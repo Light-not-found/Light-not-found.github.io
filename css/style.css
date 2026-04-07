@@ -584,6 +584,7 @@ footer .copyright {
     align-items: center;
     justify-content: center;
     z-index: 2010;
+    line-height: 1;
 }
 .modal-nav:hover {
     background: var(--accent-primary);
@@ -591,8 +592,10 @@ footer .copyright {
     transform: translateY(-50%) scale(1.05);
 }
 .modal-prev {
-    left: -40px;
+    left: -100px;
+    padding-right: 6px; /* visually centers the uneven arrow character */
 }
 .modal-next {
-    right: -40px;
+    right: -100px;
+    padding-left: 6px; /* visually centers the uneven arrow character */
 }
