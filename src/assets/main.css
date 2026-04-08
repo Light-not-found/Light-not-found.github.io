@@ -428,6 +428,10 @@ a {
     transform: translateY(0);
 }
 
+.stagger-item {
+    transition-delay: var(--stagger-delay, 0s);
+}
+
 @media (max-width: 768px) {
     .section-container { padding: 0 1.5rem; }
     .about-content { flex-direction: column; gap: 4rem; }

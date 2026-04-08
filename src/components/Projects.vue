@@ -30,12 +30,14 @@ const openProject = (project) => {
 <template>
   <section id="projects" class="projects section">
     <div class="section-container">
-      <h2 class="section-title"><span>02.</span> Featured Projects</h2>
+      <h2 class="section-title"><span>03.</span> Featured Projects</h2>
       
+      <div class="projects-grid">
         <article 
-          v-for="project in projects" 
+          v-for="(project, index) in projects" 
           :key="project.id"
-          class="project-card card fade-in"
+          class="project-card card fade-in stagger-item"
+          :style="{ '--stagger-delay': (index * 0.1) + 's' }"
           @click="openProject(project)"
         >
           <div class="project-image">

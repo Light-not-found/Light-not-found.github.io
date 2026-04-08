@@ -8,7 +8,7 @@ const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
   
   // Basic Scroll Spy logic
-  const sections = ['about', 'projects', 'contact']
+  const sections = ['about', 'skills', 'projects', 'contact']
   for (const section of sections) {
     const el = document.getElementById(section)
     if (el) {
@@ -35,9 +35,10 @@ onUnmounted(() => {
 <template>
   <header :class="['navbar', { 'scrolled': isScrolled }]" id="navbar">
     <div class="nav-container">
-      <a href="#" class="logo">Devan<span>Smit</span></a>
+      <a href="#" class="logo">D<span>S</span></a>
       <nav class="nav-links">
         <a href="#about" :class="{ active: activeSection === 'about' }">About</a>
+        <a href="#skills" :class="{ active: activeSection === 'skills' }">Skills</a>
         <a href="#projects" :class="{ active: activeSection === 'projects' }">Projects</a>
         <a href="#contact" :class="{ active: activeSection === 'contact' }">Contact</a>
       </nav>

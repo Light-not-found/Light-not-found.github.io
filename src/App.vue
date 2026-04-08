@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import Navbar from './components/Navbar.vue'
 import Hero from './components/Hero.vue'
 import About from './components/About.vue'
+import Skills from './components/Skills.vue'
 import Projects from './components/Projects.vue'
 import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
@@ -44,6 +45,18 @@ onMounted(() => {
   }
 
   observeElements();
+
+  // Mouse tracking for interactive background
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const x = (clientX / window.innerWidth) * 100;
+    const y = (clientY / window.innerHeight) * 100;
+    
+    document.documentElement.style.setProperty('--mouse-x', `${x}%`);
+    document.documentElement.style.setProperty('--mouse-y', `${y}%`);
+  }
+
+  window.addEventListener('mousemove', handleMouseMove);
 })
 </script>
 
@@ -54,6 +67,7 @@ onMounted(() => {
     <main>
       <Hero />
       <About />
+      <Skills />
       <Projects @open-gallery="openGallery" />
       <Contact />
     </main>
