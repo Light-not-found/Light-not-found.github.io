@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 const email = "devan.smit2007@gmail.com"
 const isCopied = ref(false)
+const contactSection = ref(null)
 
 const copyEmail = () => {
   navigator.clipboard.writeText(email).then(() => {
@@ -58,12 +59,15 @@ const copyEmail = () => {
         </div>
       </div>
     </div>
+    <div class="contact-glow"></div>
   </section>
 </template>
 
 <style scoped>
 .contact {
   padding: 80px 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .contact-content {
@@ -73,6 +77,8 @@ const copyEmail = () => {
   background: var(--bg-color-alt);
   border: 1px solid var(--border-color);
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .contact-headline {
@@ -184,6 +190,23 @@ const copyEmail = () => {
 
 .social-link:hover::after {
   width: 100%;
+}
+
+.contact-glow {
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+  transform: translate(
+    calc((var(--mouse-x, 50%) - 50%) * -0.1),
+    calc((var(--mouse-y, 50%) - 50%) * -0.1)
+  );
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @media (max-width: 768px) {
