@@ -7,7 +7,7 @@ const projects = [
     description: 'A cutting-edge mobile application integrating machine learning to provide intelligent, tailored fashion advice. It acts as a personal stylist embedded within a sleek, minimalist interface.',
     tech: ['Mobile Engineering', 'Computer Vision', 'Modern UI'],
     image: '/smaakmanipulatie-home.png',
-    allImages: ['/smaakmanipulatie-home.png', '/smaakmanipulatie-profile.png']
+    allImages: ['/smaakmanipulatie-home.png', '/smaakmanipulatie-profile.png', '/smaakmanipulatie-3.png', '/smaakmanipulatie-4.png', '/smaakmanipulatie-5.png']
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ const projects = [
     description: 'A dynamic web application built for a school assignment that parses and visualizes complex XML/JSON data from the Dutch elections.',
     tech: ['Data Parsing', 'XML / JSON', 'Web Development'],
     image: '/elections-1.png',
-    allImages: ['/elections-1.png', '/elections-2.png', '/elections-3.png', '/elections-4.png']
+    allImages: ['/elections-1.png', '/elections-2.png', '/elections-3.png', '/elections-4.png', '/elections-5.png']
   }
 ]
 
