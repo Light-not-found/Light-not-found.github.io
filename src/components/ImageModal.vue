@@ -62,8 +62,8 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
 .image-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(9, 9, 11, 0.95);
-  backdrop-filter: blur(12px);
+  background: rgba(18, 18, 20, 0.97);
+  backdrop-filter: blur(16px);
   z-index: 9999;
   display: flex;
   align-items: center;

@@ -2,21 +2,21 @@
    CSS CUSTOM PROPERTIES (VARIABLES)
    ========================================= */
 :root {
-    /* Color Palette - Premium Zinc Dark Theme */
-    --bg-color: #09090b;
-    /* Zinc 950 */
-    --bg-color-alt: #121217;
-    /* Custom deep zinc */
-    --card-bg: #18181b;
-    /* Zinc 900 */
-    --border-color: #27272a;
-    /* Zinc 800 */
-    --text-primary: #fafafa;
-    /* Zinc 50 */
-    --text-secondary: #a1a1aa;
+    /* Color Palette - Premium Soft Dark Theme */
+    --bg-color: #121214;
+    /* Deep Zinc/Slate mix */
+    --bg-color-alt: #1a1a1e;
+    /* Slightly lighter for sections */
+    --card-bg: #222226;
+    /* Surface color */
+    --border-color: #333338;
+    /* Subtle borders */
+    --text-primary: #ffffff;
+    /* White 100% */
+    --text-secondary: #d4d4d8;
+    /* Zinc 300 - much brighter than before */
+    --text-muted: #a1a1aa;
     /* Zinc 400 */
-    --text-muted: #71717a;
-    /* Zinc 500 */
 
     /* Modern Accents */
     --accent-primary: #3b82f6;
