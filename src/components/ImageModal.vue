@@ -39,9 +39,15 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
       </button>
 
       <div class="image-preview-wrapper">
-        <img :src="images[currentIndex]" alt="Project preview" class="modal-image">
-        <div v-if="images.length > 1" class="image-counter">
-          {{ currentIndex + 1 }} / {{ images.length }}
+        <img :src="images[currentIndex]?.url || images[currentIndex]" :alt="images[currentIndex]?.desc || 'Project preview'" class="modal-image">
+        
+        <div class="image-info-overlay">
+          <p v-if="images[currentIndex]?.desc" class="image-description">
+            {{ images[currentIndex].desc }}
+          </p>
+          <div v-if="images.length > 1" class="image-counter">
+            {{ currentIndex + 1 }} / {{ images.length }}
+          </div>
         </div>
       </div>
 
@@ -105,14 +111,32 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
   border: 1px solid var(--border-color);
 }
 
-.image-counter {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
+.image-info-overlay {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.image-description {
+  font-size: 1.1rem;
+  color: var(--text-primary);
   font-weight: 500;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.4rem 1rem;
-  border-radius: 50px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.image-counter {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
 }
 
 .modal-arrow {

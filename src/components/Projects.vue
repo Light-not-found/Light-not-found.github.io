@@ -3,20 +3,32 @@ const projects = [
   {
     id: 1,
     label: 'School Project',
-    name: 'Mirror AI app',
-    description: 'A cutting-edge mobile application integrating machine learning to provide intelligent, tailored fashion advice. It acts as a personal stylist embedded within a sleek, minimalist interface.',
-    tech: ['Mobile Engineering', 'Computer Vision', 'Modern UI'],
+    name: 'AI Stylist Companion',
+    description: 'A sophisticated AI-driven style tool that analyzes user preferences and physical traits to provide personalized fashion recommendations. Built to bridge the gap between AI technology and personal expression.',
+    tech: ['Mobile Engineering', 'Computer Vision', 'Style Analysis'],
     image: '/smaakmanipulatie-home.png',
-    allImages: ['/smaakmanipulatie-home.png', '/smaakmanipulatie-profile.png', '/smaakmanipulatie-3.png', '/smaakmanipulatie-4.png', '/smaakmanipulatie-5.png']
+    allImages: [
+      { url: '/smaakmanipulatie-home.png', desc: 'Main entry point for the AI Stylist experience' },
+      { url: '/smaakmanipulatie-profile.png', desc: 'Detailed user profiling for physical traits and style mapping' },
+      { url: '/smaakmanipulatie-3.png', desc: 'Live mirror interface for facial data capture and verification' },
+      { url: '/smaakmanipulatie-4.png', desc: 'Personalized stijlsuggesties with actionable shopping links' },
+      { url: '/smaakmanipulatie-5.png', desc: 'Successful completion of the style analysis process' }
+    ]
   },
   {
     id: 2,
     label: 'School Project',
-    name: 'Dutch Elections',
-    description: 'A dynamic web application built for a school assignment that parses and visualizes complex XML/JSON data from the Dutch elections.',
-    tech: ['Data Parsing', 'XML / JSON', 'Web Development'],
+    name: 'Rhino Elections',
+    description: 'A comprehensive election data platform providing clear insights into Dutch political results through data visualization, comparative analysis, and secure user interactions.',
+    tech: ['Data Visualization', 'User Management', 'Web Engineering'],
     image: '/elections-1.png',
-    allImages: ['/elections-1.png', '/elections-2.png', '/elections-3.png', '/elections-4.png', '/elections-5.png']
+    allImages: [
+      { url: '/elections-1.png', desc: 'Information dashboard showing key election figures and mission' },
+      { url: '/elections-2.png', desc: 'Parliamentary seat distribution overview (Hemicycle view)' },
+      { url: '/elections-3.png', desc: 'Analytical year-on-year comparison of election outcomes' },
+      { url: '/elections-4.png', desc: 'Secure community login and registration interface' },
+      { url: '/elections-5.png', desc: 'Integrated profile management with real-time success feedback' }
+    ]
   }
 ]
 
@@ -30,7 +42,10 @@ const openProject = (project) => {
 <template>
   <section id="projects" class="projects section">
     <div class="section-container">
-      <h2 class="section-title"><span>03.</span> Featured Projects</h2>
+      <div class="section-title-group">
+        <span class="section-label">Case Studies</span>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
       
       <div class="projects-grid">
         <article 

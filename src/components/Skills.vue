@@ -1,7 +1,10 @@
 <template>
   <section id="skills" class="skills section fade-in">
     <div class="section-container">
-      <h2 class="section-title"><span>02.</span> Technical Skills</h2>
+      <div class="section-title-group">
+        <span class="section-label">Expertise</span>
+        <h2 class="section-title">Technical Skills</h2>
+      </div>
       
       <div class="skills-grid">
         <!-- Frontend & Mobile -->
@@ -82,23 +85,33 @@
               <span>Git / GitHub</span>
             </div>
             <div class="skill-item">
-              <span class="text-icon">🚀</span>
+              <span class="text-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A4.5 4.5 0 0 0 13.5 3.5c-1.3 0-2.6.5-3.5 1.5-1 1-1.5 2.2-1.5 3.5 0 1.2.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg>
+              </span>
               <span>Innovation</span>
             </div>
             <div class="skill-item">
-              <span class="text-icon">📊</span>
+              <span class="text-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              </span>
               <span>Data Analytics</span>
             </div>
             <div class="skill-item">
-              <span class="text-icon">🎨</span>
+              <span class="text-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.7-.1 2.5-.3.8-.2 1.5-.7 1.5-1.7 0-1.1-.9-2-2-2-1.1 0-2-.9-2-2s.9-2 2-2h3c1.1 0 2-.9 2-2 0-3.3-2.7-5.5-6-5.5z"></path></svg>
+              </span>
               <span>Design UI/UX</span>
             </div>
             <div class="skill-item">
-              <span class="text-icon">🤝</span>
+              <span class="text-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </span>
               <span>Collaboration</span>
             </div>
             <div class="skill-item">
-              <span class="text-icon">🔄</span>
+              <span class="text-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M3 21v-5h5"></path></svg>
+              </span>
               <span>Scrum</span>
             </div>
           </div>

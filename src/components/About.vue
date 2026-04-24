@@ -1,7 +1,10 @@
 <template>
   <section id="about" class="about section fade-in">
     <div class="section-container">
-      <h2 class="section-title"><span>01.</span> About Me</h2>
+      <div class="section-title-group">
+        <span class="section-label">Profile</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
       <div class="about-content">
         <div class="about-text">
           <p>

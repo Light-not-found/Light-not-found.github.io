@@ -20,7 +20,10 @@ const copyEmail = () => {
 <template>
   <section id="contact" class="contact section" ref="contactSection">
     <div class="section-container">
-      <h2 class="section-title"><span>04.</span> Get In Touch</h2>
+      <div class="section-title-group">
+        <span class="section-label">Connect</span>
+        <h2 class="section-title">Get In Touch</h2>
+      </div>
       
       <div class="contact-content card fade-in">
         <div class="contact-header">
@@ -59,7 +62,6 @@ const copyEmail = () => {
         </div>
       </div>
     </div>
-    <div class="contact-glow"></div>
   </section>
 </template>
 
@@ -192,22 +194,6 @@ const copyEmail = () => {
   width: 100%;
 }
 
-.contact-glow {
-  position: absolute;
-  bottom: -10%;
-  left: -5%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-  filter: blur(80px);
-  z-index: 0;
-  pointer-events: none;
-  transform: translate(
-    calc((var(--mouse-x, 50%) - 50%) * -0.1),
-    calc((var(--mouse-y, 50%) - 50%) * -0.1)
-  );
-  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-}
 
 @media (max-width: 768px) {
   .contact-content {

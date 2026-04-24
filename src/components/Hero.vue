@@ -17,33 +17,16 @@
         </a>
       </div>
     </div>
-    <div class="hero-bg-blob"></div>
   </section>
 </template>
 
 <style scoped>
 /* Scoped styles can refine the original text for a modern look */
 .name {
-  background: linear-gradient(180deg, #fff 0%, #a1a1aa 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-primary);
 }
 
-.hero-bg-blob {
-  position: absolute;
-  top: 10%;
-  right: -5%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-  filter: blur(80px);
-  z-index: -1;
-  pointer-events: none;
-  transform: translate(
-    calc((var(--mouse-x, 50%) - 50%) * 0.1),
-    calc((var(--mouse-y, 50%) - 50%) * 0.1)
-  );
-  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+.title {
+  margin-bottom: 2rem;
 }
 </style>
