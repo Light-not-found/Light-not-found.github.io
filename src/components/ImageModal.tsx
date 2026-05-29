@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Images } from 'lucide-react';
 
 interface ProjectImage {
   url: string;
@@ -15,129 +15,192 @@ interface ImageModalProps {
 const ImageModal: React.FC<ImageModalProps> = ({ images, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextImage = () => setCurrentIndex((prev) => (prev + 1) % images.length);
-  const prevImage = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  const imageCount = images.length;
+  const currentImage = images[currentIndex];
+
+  const nextImage = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % imageCount);
+  }, [imageCount]);
+
+  const prevImage = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + imageCount) % imageCount);
+  }, [imageCount]);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
+    setCurrentIndex(0);
+  }, [images]);
+
+  useEffect(() => {
+    if (!images || imageCount === 0) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+      if (event.key === 'ArrowRight') nextImage();
+      if (event.key === 'ArrowLeft') prevImage();
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    // Prevent scrolling behind modal
-    document.body.style.overflow = 'hidden';
-    
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'auto';
-    };
-  }, [images.length, onClose]);
 
-  if (!images || images.length === 0) return null;
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [images, imageCount, nextImage, prevImage, onClose]);
+
+  if (!images || imageCount === 0 || !currentImage) return null;
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[2000] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 lg:p-8"
+      className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/92 p-3 backdrop-blur-xl sm:p-6"
       onClick={onClose}
     >
-      {/* Main Glass Panel */}
-      <div 
-        className="w-full max-w-5xl h-[90vh] lg:h-[80vh] glass rounded-[32px] overflow-hidden grid grid-cols-1 lg:grid-cols-[1.8fr_1fr] relative shadow-[0_30px_60px_rgba(0,0,0,0.8)]"
-        onClick={(e) => e.stopPropagation()}
+      <motion.div
+        initial={{ opacity: 0, y: 24, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 16, scale: 0.98 }}
+        transition={{ duration: 0.25, ease: [0.2, 0, 0, 1] }}
+        className="relative grid h-[92svh] w-full max-w-7xl overflow-hidden rounded-[28px] border border-white/10 bg-zinc-950 shadow-[0_30px_100px_rgba(0,0,0,0.85)] lg:grid-cols-[minmax(0,1fr)_380px]"
+        onClick={(event) => event.stopPropagation()}
       >
-        {/* Close Button (Absolute on the top right) */}
-        <button 
-          className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-colors z-[2010] border border-white/10" 
-          onClick={onClose} 
+        {/* Close Button */}
+        <button
+          type="button"
+          className="absolute top-4 right-4 z-[2010] flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-black/60 text-white backdrop-blur-md transition-colors hover:bg-white/10"
+          onClick={onClose}
           aria-label="Close gallery"
         >
           <X size={18} strokeWidth={2.5} />
         </button>
 
-        {/* LEFT COLUMN: Main Image Viewport (Highly prioritized with 1.8fr split) */}
-        <div className="relative bg-zinc-950/50 flex items-center justify-center p-6 border-b lg:border-b-0 lg:border-r border-white/5 h-[50vh] lg:h-full overflow-hidden">
-          <motion.img 
-            key={currentIndex}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.25 }}
-            src={images[currentIndex].url} 
-            alt={images[currentIndex].desc} 
-            className="max-h-full max-w-full object-contain rounded-2xl shadow-2xl z-10"
-          />
-          
-          {images.length > 1 && (
-            <>
-              {/* Navigation arrows positioned over the viewport */}
-              <button 
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-white/10 border border-white/10 text-white w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all z-20" 
-                onClick={prevImage} 
-                aria-label="Previous image"
-              >
-                <ChevronLeft size={18} strokeWidth={2.5} />
-              </button>
-              <button 
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-white/10 border border-white/10 text-white w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all z-20" 
-                onClick={nextImage} 
-                aria-label="Next image"
-              >
-                <ChevronRight size={18} strokeWidth={2.5} />
-              </button>
+        {/* Image Area */}
+        <div className="flex min-h-0 flex-col bg-black">
+          <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden p-4 sm:p-6 lg:p-8">
+            <div className="pointer-events-none absolute inset-0 bg-dot-pattern opacity-10" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.04] via-transparent to-transparent" />
 
-              {/* Centered Image Counter at the bottom of the viewport */}
-              <span className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/65 px-3.5 py-1 border border-white/10 rounded-full text-[10px] font-semibold text-zinc-400 font-mono tracking-widest backdrop-blur-md z-20">
-                {currentIndex + 1} / {images.length}
-              </span>
-            </>
+            <motion.img
+              key={currentImage.url}
+              initial={{ opacity: 0, scale: 0.985 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.25 }}
+              src={currentImage.url}
+              alt={currentImage.desc}
+              className="relative z-10 max-h-full max-w-full rounded-2xl object-contain shadow-2xl"
+            />
+
+            {imageCount > 1 && (
+              <>
+                <button
+                  type="button"
+                  className="absolute left-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-black/65 text-white backdrop-blur-md transition-all hover:bg-white/10"
+                  onClick={prevImage}
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={20} strokeWidth={2.5} />
+                </button>
+
+                <button
+                  type="button"
+                  className="absolute right-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-black/65 text-white backdrop-blur-md transition-all hover:bg-white/10"
+                  onClick={nextImage}
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={20} strokeWidth={2.5} />
+                </button>
+
+                <span className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-full border border-white/10 bg-black/70 px-3.5 py-1.5 font-mono text-[10px] font-semibold tracking-widest text-zinc-300 backdrop-blur-md">
+                  {currentIndex + 1} / {imageCount}
+                </span>
+              </>
+            )}
+          </div>
+
+          {/* Thumbnail Strip */}
+          {imageCount > 1 && (
+            <div className="device-screen-scrollbar flex h-24 shrink-0 gap-2 overflow-x-auto border-t border-white/10 bg-zinc-950/95 p-3">
+              {images.map((image, index) => (
+                <button
+                  key={`${image.url}-${index}`}
+                  type="button"
+                  onClick={() => setCurrentIndex(index)}
+                  className={`aspect-video h-full shrink-0 cursor-pointer overflow-hidden rounded-xl border-2 bg-zinc-900 transition-all ${
+                    index === currentIndex
+                      ? 'border-blue-500 opacity-100'
+                      : 'border-transparent opacity-45 hover:border-white/20 hover:opacity-100'
+                  }`}
+                  aria-label={`Open image ${index + 1}`}
+                >
+                  <img
+                    src={image.url}
+                    alt={`Thumbnail ${index + 1}`}
+                    className="h-full w-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
           )}
         </div>
 
-        {/* RIGHT COLUMN: Sidebar (Clean, compact, and padded) */}
-        <div className="p-8 flex flex-col justify-between h-[40vh] lg:h-full overflow-y-auto pr-16">
-          <div className="flex-grow">
-            {/* Header label */}
-            <div className="mb-5">
-              <span className="text-[9px] font-bold tracking-[0.2em] text-blue-500 bg-blue-500/10 px-3 py-1 border border-blue-500/20 rounded-full uppercase font-mono">
-                Description
-              </span>
-            </div>
+        {/* Sidebar */}
+        <aside className="device-screen-scrollbar flex min-h-0 flex-col overflow-y-auto border-t border-white/10 bg-zinc-900/70 p-6 lg:border-t-0 lg:border-l">
+          <div className="mb-6 flex items-center gap-2">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-400">
+              <Images size={16} />
+            </span>
 
-            {/* Clean, high-contrast Description text */}
-            <h4 className="text-white text-[15px] sm:text-base font-normal leading-relaxed mb-4">
-              {images[currentIndex].desc}
-            </h4>
+            <div>
+              <p className="text-[9px] font-bold tracking-[0.22em] text-blue-400 uppercase">
+                Gallery
+              </p>
+
+              <p className="text-xs font-semibold text-zinc-500">
+                Image {currentIndex + 1} of {imageCount}
+              </p>
+            </div>
           </div>
 
-          {/* Clean image overview grid */}
-          {images.length > 1 && (
-            <div className="mt-auto pt-6 border-t border-white/5">
-              <p className="text-[9px] font-bold tracking-widest text-zinc-500 uppercase mb-3 font-mono">
-                Image Overview
+          <div className="mb-6 border-b border-white/10 pb-6">
+            <h4 className="mb-3 text-lg font-bold leading-tight text-white">
+              Screen Description
+            </h4>
+
+            <p className="text-sm leading-relaxed text-zinc-400">
+              {currentImage.desc}
+            </p>
+          </div>
+
+          {imageCount > 1 && (
+            <div className="mt-auto">
+              <p className="mb-3 text-[9px] font-bold tracking-widest text-zinc-500 uppercase">
+                Quick Jump
               </p>
-              <div className="grid grid-cols-4 gap-2">
-                {images.map((img, index) => (
-                  <button 
-                    key={index}
-                    className={`aspect-[4/3] rounded-lg overflow-hidden cursor-pointer transition-all p-0 bg-zinc-900 border-2 shrink-0 ${
-                      index === currentIndex 
-                        ? 'border-blue-500 scale-95 opacity-100' 
-                        : 'border-transparent opacity-40 hover:opacity-100 hover:border-white/10'
-                    }`}
+
+              <div className="grid grid-cols-5 gap-2">
+                {images.map((image, index) => (
+                  <button
+                    key={`jump-${image.url}-${index}`}
+                    type="button"
                     onClick={() => setCurrentIndex(index)}
+                    className={`aspect-square rounded-lg border text-[10px] font-bold transition-all ${
+                      index === currentIndex
+                        ? 'border-blue-500 bg-blue-500/15 text-blue-400'
+                        : 'border-white/10 bg-white/[0.03] text-zinc-500 hover:border-white/20 hover:text-white'
+                    }`}
                   >
-                    <img src={img.url} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                    {index + 1}
                   </button>
                 ))}
               </div>
             </div>
           )}
-        </div>
-      </div>
+        </aside>
+      </motion.div>
     </motion.div>
   );
 };

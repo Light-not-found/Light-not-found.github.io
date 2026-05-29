@@ -1,68 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import Magnetic from './Magnetic';
 
-const Navbar: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+interface NavbarProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      
-      const sections = ['about', 'skills', 'projects', 'contact'];
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
+  const sections = ['about', 'projects', 'skills', 'contact'];
 
   return (
-    <motion.header 
+    <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-        isScrolled 
-          ? 'top-4 w-[95%] max-w-3xl rounded-[100px] bg-zinc-900/85 backdrop-blur-md shadow-lg shadow-black/50 border border-white/5 px-6 py-3' 
-          : 'top-6 w-[90%] max-w-[700px] rounded-[100px] bg-zinc-900/70 backdrop-blur-md border border-white/10 px-6 py-3'
-      }`}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="fixed top-11 left-1/2 z-[250] w-[92%] max-w-3xl -translate-x-1/2 rounded-[100px] border border-white/10 bg-zinc-900/80 px-4 py-3 shadow-[0_15px_40px_rgba(0,0,0,0.5)] backdrop-blur-md sm:px-6"
     >
-      <div className="flex justify-between items-center w-full">
-        <a href="#" className="text-xl font-extrabold tracking-tighter text-white">
+      <div className="flex w-full items-center justify-between gap-4">
+        <button
+          type="button"
+          onClick={() => setActiveTab('home')}
+          className="flex cursor-pointer items-center gap-1.5 border-none bg-transparent p-0 text-xl font-extrabold tracking-tighter text-white transition-opacity select-none hover:opacity-80"
+        >
           D<span className="text-blue-500">S</span>
-        </a>
-        <nav className="hidden md:flex gap-1 items-center relative">
-          {['about', 'skills', 'projects', 'contact'].map((section) => (
+
+          {activeTab !== 'home' && (
+            <span className="ml-2 hidden rounded-full bg-zinc-800 px-2 py-0.5 text-[10px] font-bold tracking-normal text-zinc-500 uppercase sm:inline-flex">
+              Studio
+            </span>
+          )}
+        </button>
+
+        <nav className="relative flex items-center gap-1">
+          {sections.map((section) => (
             <Magnetic key={section} pullFactor={0.15}>
-              <a 
-                href={`#${section}`} 
-                className={`text-sm font-medium px-4 py-2 rounded-full transition-colors duration-300 capitalize relative block ${
-                  activeSection === section ? 'text-white' : 'text-zinc-400 hover:text-white'
+              <button
+                type="button"
+                onClick={() => setActiveTab(section)}
+                className={`relative cursor-pointer rounded-full border-none bg-transparent px-3 py-2 text-sm font-medium capitalize transition-colors duration-300 sm:px-4 ${
+                  activeTab === section
+                    ? 'text-white'
+                    : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                {/* Active sliding background bubble */}
-                {activeSection === section && (
-                  <motion.span 
+                {activeTab === section && (
+                  <motion.span
                     layoutId="activeNavBubble"
-                    className="absolute inset-0 bg-white/10 rounded-full z-0 pointer-events-none"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    className="pointer-events-none absolute inset-0 z-0 rounded-full bg-white/10"
+                    transition={{
+                      type: 'spring',
+                      stiffness: 380,
+                      damping: 30,
+                    }}
                   />
                 )}
+
                 <span className="relative z-10">{section}</span>
-              </a>
+              </button>
             </Magnetic>
           ))}
         </nav>

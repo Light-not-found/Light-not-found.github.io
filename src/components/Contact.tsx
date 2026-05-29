@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Copy, Check } from 'lucide-react';
 
-const Contact: React.FC = () => {
+interface ContactProps {
+  isInViewport?: boolean;
+}
+
+const Contact: React.FC<ContactProps> = ({ isInViewport = false }) => {
   const email = "devan.smit2007@gmail.com";
   const [isCopied, setIsCopied] = useState(false);
 
@@ -14,6 +18,76 @@ const Contact: React.FC = () => {
       console.error('Failed to copy: ', err);
     });
   };
+
+  if (isInViewport) {
+    return (
+      <div className="w-full text-center">
+        <h3 className="text-xl font-bold tracking-tight text-white mb-2 font-heading">
+          Get In Touch
+        </h3>
+        <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-6">
+          Connect & Collaborate
+        </p>
+
+        <div className="bg-zinc-900/40 p-6 rounded-2xl border border-white/5 flex flex-col items-center shadow-md">
+          <h4 className="text-md font-bold text-white mb-3 font-heading leading-tight">
+            Ready to start something <span className="text-blue-400">new</span>?
+          </h4>
+          <p className="text-zinc-400 text-[11px] leading-relaxed mb-6 max-w-sm mx-auto">
+            Whether you have a specific project in mind or just want to explore how we could work together, I'd love to hear from you.
+          </p>
+
+          <div 
+            className="flex flex-col gap-2.5 p-3.5 bg-white/5 border border-white/10 rounded-2xl cursor-pointer transition-all duration-300 hover:border-white/20 hover:bg-white/10 w-full mb-6"
+            onClick={copyEmail}
+          >
+            <div className="flex flex-col items-center">
+              <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-wider mb-0.5">Email me at</span>
+              <span className="font-semibold text-xs text-white truncate max-w-full">{email}</span>
+            </div>
+            <button 
+              className={`flex items-center justify-center gap-1.5 py-2 rounded-xl font-bold text-xs transition-colors duration-300 ${
+                isCopied ? 'bg-blue-500 text-white' : 'bg-white text-zinc-950'
+              }`}
+            >
+              {!isCopied ? (
+                <>
+                  <span>Copy Address</span>
+                  <Copy size={12} strokeWidth={2.5} />
+                </>
+              ) : (
+                <>
+                  <span>Copied!</span>
+                  <Check size={12} strokeWidth={2.5} />
+                </>
+              )}
+            </button>
+          </div>
+
+          <div className="flex justify-center gap-6 pt-4 border-t border-white/5 w-full">
+            <a 
+              href="https://www.linkedin.com/in/devan-smit-190480385/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-zinc-400 font-semibold text-xs relative pb-0.5 transition-colors hover:text-white group"
+            >
+              LinkedIn
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-blue-500 transition-all duration-300 group-hover:w-full" />
+            </a>
+            <a 
+              href="https://github.com/Light-not-found" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-zinc-400 font-semibold text-xs relative pb-0.5 transition-colors hover:text-white group"
+            >
+              GitHub
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-blue-500 transition-all duration-300 group-hover:w-full" />
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section id="contact" className="py-32 relative overflow-hidden bg-zinc-900/10">
