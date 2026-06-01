@@ -57,7 +57,6 @@ const About: React.FC<AboutProps> = ({ isInViewport = false }) => {
             </div>
 
             <span className="absolute -right-1 -bottom-1 rounded-full border border-zinc-950 bg-blue-500 px-2 py-0.5 text-[9px] font-extrabold text-white uppercase">
-              AUAS
             </span>
           </div>
 

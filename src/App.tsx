@@ -241,7 +241,7 @@ const App: React.FC = () => {
               </h1>
 
               <p className="mb-2 text-lg font-medium tracking-tight text-zinc-400">
-                Software Engineering — HBO-ICT, AUAS
+                Software Engineering student 
               </p>
 
               <p className="mb-10 max-w-sm text-sm leading-relaxed text-zinc-500">
